@@ -1,2 +1,5 @@
 RewriteEngine on
-RewriteRule  (.*) public/$1
+# если запрос идет не на фаил
+RewriteCond %{REQUEST_FILENAME} !-f
+# перенапрвить запрос на index.php
+RewriteRule (.*) index.php?$1 [L,QSA]
