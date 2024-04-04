@@ -2,27 +2,40 @@
 
 namespace core;
 
+/**
+ * Class App
+ * Основной класс приложения
+ */
 class App
 {
+    /**
+     * @var Registry Реестр приложения
+     */
     public static Registry $app;
 
+    /**
+     * Конструктор класса App
+     */
     public function __construct()
     {
         new ErrorHandler();
         self::$app = Registry::getInstance();
         $this->getParameters();
     }
-    /**
-     * Функция проверяет наличие файла с праметрами
-     * Так же проверяет наличие настроек в файле в виде массива параметров
-     * Если файл или настройки отсутствуют скрипт преращает выполнение прлиложения
-     */
 
+    /**
+     * Получение параметров приложения из файла конфигурации
+     */
     protected function getParameters(): void
     {
+        /**
+         * Функция проверяет наличие файла с параметрами
+         * Также проверяет наличие настроек в файле в виде массива параметров
+         * Если файл или настройки отсутствуют, скрипт завершает выполнение приложения
+         */
         if (is_file(CONFIG . '/parameters.php'))
         {
-            $params = require_once CONFIG . '/parameters.php';
+            $params = require CONFIG . '/parameters.php';
             if (is_array($params))
             {
                 foreach ($params as $nameParameters => $valueParameters)
@@ -33,7 +46,7 @@ class App
             {
                 die('Отсутствуют настройки в файле (проверьте наличие /config/parameters.php)');
             }
-        }else
+        } else
         {
             die('На сервере отсутствует файл настроек (проверьте наличие /config/parameters.php)');
         }
