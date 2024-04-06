@@ -2,12 +2,12 @@
 /**
  * Определение констант для настройки приложения
  */
-define ("DEBUG", 1); // development => 1 / production => 0
+define ("DEBUG", 0); // development => 1 / production => 0
 define ("ROOT", dirname(__DIR__));
 define ("HTTP", ROOT . '/public'); // access user public directory // доступ к папке с публичными файлами для пользователей
 define ("APP", ROOT . '/application'); // path for application directory // путь к папке с файлами приложения
 define ("CORE", ROOT . '/core'); // path to core files // путь к файлам ядра приложения
-define ("HELP", ROOT . '/core/helpers');
+define ("HELP", ROOT . '/core/helpers'); // вспомогательные функции
 define ("CASH", ROOT . '/temporary/cash'); // temporary files  // временные файлы
 define ("LOG", ROOT . '/temporary/logs'); // path for log files directory // путь к файлам журналов
 define ("CONFIG", ROOT . '/config'); // path for config file directory // путь к файлам конфигурации

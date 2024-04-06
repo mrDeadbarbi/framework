@@ -2,6 +2,7 @@
 
 namespace core;
 
+
 /**
  * Class App
  * Основной класс приложения
@@ -18,9 +19,12 @@ class App
      */
     public function __construct()
     {
+        $currentHTMLQuery = trim(urldecode($_SERVER['QUERY_STRING']), '/'); // убираем '/' из текущего HTML запроса и помещаем в переменную
         new ErrorHandler();
         self::$app = Registry::getInstance();
         $this->getParameters();
+        Router::routeTransmission($currentHTMLQuery);
+
     }
 
     /**
@@ -44,11 +48,12 @@ class App
                 }
             } else
             {
-                die('Отсутствуют настройки в файле (проверьте наличие /config/parameters.php)');
+                die('Отсутствуют настройки в файле (проверьте наличие и правильность настроек в /config/parameters.php)');
             }
         } else
         {
-            die('На сервере отсутствует файл настроек (проверьте наличие /config/parameters.php)');
+            die('На сервере отсутствует файл настроек (проверьте наличие файла /config/parameters.php)');
         }
     }
+
 }
