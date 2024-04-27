@@ -1,9 +1,11 @@
 <?php
-function debug($data, $die = false)
+function debug($data)
 {
-    echo '<pre>' . print_r($data, 1) . '</pre>';
-    if($die)
-    {
-       die;
-    }
+    $debugInfo = debug_backtrace()[0];
+    $fileName = basename($debugInfo['file']);
+    $lineNumber = $debugInfo['line'];
+
+    echo '<pre>File: ' . $fileName . "\n";
+    echo 'Line: ' . $lineNumber . "\n";
+    echo 'Value: ' . print_r($data, true) . '</pre>';
 }
